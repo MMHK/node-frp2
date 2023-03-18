@@ -88,8 +88,12 @@ module.exports = async () => {
     )
   }
 
-  const frpcPath = path.resolve(extractDirPath, "frpc")
-  const frpsPath = path.resolve(extractDirPath, "frps")
+  let frpcPath = path.resolve(extractDirPath, "frpc")
+  let frpsPath = path.resolve(extractDirPath, "frps")
+  if(platform == "win32") {
+    frpcPath = frpcPath + '.exe';
+    frpsPath = frpsPath + '.exe';
+  }
 
   if (fs.existsSync(frpcPath) && fs.existsSync(frpsPath)) {
     return { frpsPath, frpcPath }
